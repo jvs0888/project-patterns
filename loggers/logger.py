@@ -3,6 +3,11 @@ import logging
 from datetime import datetime
 from logging.handlers import RotatingFileHandler
 
+try:
+    from loggers.loki_logger import init_loki
+except ImportError as ie:
+    exit(ie)
+
 
 def init_logger(name: str = 'logger',
                 file_log: bool = False,
@@ -40,6 +45,8 @@ def init_logger(name: str = 'logger',
         stream_handler = logging.StreamHandler()
         stream_handler.setFormatter(formatter)
         logger.addHandler(stream_handler)
+
+    logger.addHandler(init_loki())
 
     return logger
 
