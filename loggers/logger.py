@@ -20,7 +20,7 @@ def init_logger(name: str = 'logger',
     log_filename = f'{name}_{str(datetime.now().date())}.log'
     log_filepath = os.path.join(log_directory, log_filename)
 
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger(name)
     level = logging.INFO
     logger.setLevel(level)
     formatter = logging.Formatter(fmt=u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s')
